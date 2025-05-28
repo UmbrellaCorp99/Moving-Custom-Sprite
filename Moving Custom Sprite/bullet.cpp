@@ -31,7 +31,7 @@ int bullet::move_bullet (int arrowX, int arrowY, int width, int length, int heig
 		alive=false;
 		return 1;
 	}
-	if (y> height)
+	if (y> height-40)
 		alive = false;
 	return 0;
 

@@ -149,9 +149,9 @@ void arrowClass::move_arrow(int width, int height)
 		x = 0;
 		speed = 0;
 	}
-	if (y > height-32)
+	if (y > height-72)
 	{
-		y = height-32;
+		y = height-72;
 		speed = 0;
 	}
 	if (y < 0)
