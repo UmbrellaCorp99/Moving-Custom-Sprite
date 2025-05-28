@@ -60,13 +60,14 @@ int main(void)
 		if(ev.type == ALLEGRO_EVENT_TIMER)
 		{
 			redraw = true;
-			
+			al_clear_to_color(al_map_rgb(0, 0, 0));
+			al_draw_textf(font, al_map_rgb(255, 0, 0), 120, 500, 0, "Score: %i", score);
+			al_draw_textf(font, al_map_rgb(255, 0, 0), width / 2, 500, 0, "%i", count);
 			if (al_get_timer_count(timer) % 60 == 0) {
-				al_clear_to_color(al_map_rgb(0, 0, 0));
-				al_draw_textf(font, al_map_rgb(255, 0, 0), width / 2, 500, 0, "%i", count);
 				count--;
 				if (count == -1) {
 					done = true;
+					al_rest(5);
 				}
 			}
 			for(int i=0;i<10;i++)
