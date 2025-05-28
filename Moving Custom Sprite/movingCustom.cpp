@@ -1,5 +1,7 @@
 #include <allegro5\allegro.h>
 #include <allegro5\allegro_primitives.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
 #include "arrow.h";
 #include "bullet.h"
 
@@ -10,10 +12,11 @@ int main(void)
 	int score=0;
 	bool redraw=true;
 	const int FPS = 60;
+	bool timeout = false;
 
 	//variables
 	int width = 640;
-	int height = 480;
+	int height = 520;
 	bool done = false;
 
 	//allegro variable
@@ -33,8 +36,11 @@ int main(void)
 	//addon init
 	al_install_keyboard();
 	al_init_primitives_addon();
+	al_init_font_addon();
+	al_init_ttf_addon();
 	arrow.create_arrow_bitmap(display);
 
+	ALLEGRO_FONT* font = al_load_ttf_font("Movistar Text Regular.ttf", 20, 0);
 
 	al_set_target_bitmap(al_get_backbuffer(display));
 	event_queue = al_create_event_queue();
@@ -45,6 +51,7 @@ int main(void)
 	arrow.drawArrow();
 	al_flip_display();
 	al_start_timer(timer);
+	int count = 30;
 	while(!done)
 	{
 		ALLEGRO_EVENT ev;
@@ -53,6 +60,15 @@ int main(void)
 		if(ev.type == ALLEGRO_EVENT_TIMER)
 		{
 			redraw = true;
+			
+			if (al_get_timer_count(timer) % 60 == 0) {
+				al_clear_to_color(al_map_rgb(0, 0, 0));
+				al_draw_textf(font, al_map_rgb(255, 0, 0), width / 2, 500, 0, "%i", count);
+				count--;
+				if (count == -1) {
+					done = true;
+				}
+			}
 			for(int i=0;i<10;i++)
 			{
 				if (!mybullet[i].getStatus()) {
