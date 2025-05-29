@@ -41,6 +41,7 @@ int main(void)
 	arrow.create_arrow_bitmap(display);
 
 	ALLEGRO_FONT* font = al_load_ttf_font("Movistar Text Regular.ttf", 20, 0);
+	ALLEGRO_FONT* finalfont = al_load_ttf_font("Movistar Text Regular.ttf", 30, 0);
 
 	al_set_target_bitmap(al_get_backbuffer(display));
 	event_queue = al_create_event_queue();
@@ -67,7 +68,11 @@ int main(void)
 				count--;
 				if (count == -1) {
 					done = true;
-					al_rest(5);
+					al_clear_to_color(al_map_rgb(0, 0, 0));
+					al_draw_textf(finalfont, al_map_rgb(255, 0, 0), 320, 240, ALLEGRO_ALIGN_CENTER, "Final Score: %i", score);
+					al_draw_text(finalfont, al_map_rgb(255, 0, 0), 320, 280, ALLEGRO_ALIGN_CENTER, "Game will close in 3 seconds");
+					al_flip_display();
+					al_rest(3);
 				}
 			}
 			for(int i=0;i<10;i++)
@@ -114,14 +119,17 @@ int main(void)
 			for(int i=0;i<10;i++)
 			{
 				mybullet[i].erase_bullet();
-				score+=mybullet[i].move_bullet(arrow.getX(),arrow.getY(),32,32,height);
+				score+=mybullet[i].move_bullet(arrow.getX(),arrow.getY(),64,64,height);
 			}
 		}
 		al_flip_display();
 	}
 	al_destroy_event_queue(event_queue);
 	al_destroy_timer(timer);
-	al_destroy_display(display);						//destroy our display object
+	al_destroy_font(font);
+	al_destroy_font(finalfont);
+	al_destroy_display(display);
+	//destroy our display object
 	system("pause");
 	return 0;
 }
