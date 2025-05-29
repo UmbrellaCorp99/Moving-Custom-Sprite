@@ -42,10 +42,10 @@ void arrowClass::create_arrow_bitmap(ALLEGRO_DISPLAY *display)
 		switch(i)
 		{
 		case 0: //Up
-			al_draw_filled_triangle(32, 27, 32, 37, 64, 32, al_map_rgb(255, 255, 0));
+			al_draw_filled_triangle(27, 32, 37, 32, 32, 0, al_map_rgb(255, 255, 0));
 			al_draw_filled_circle(x, y, 17, al_map_rgb(0, 0, 255));
-			al_draw_circle(x + 8, y - 5, 5, al_map_rgb(0, 0, 0), 2);
-			al_draw_filled_rectangle(x + 6, y - 8, x + 11, y - 2, al_map_rgb(255, 0, 0));
+			al_draw_circle(x + 5, y - 8, 5, al_map_rgb(0, 0, 0), 2);
+			al_draw_filled_rectangle(x + 3, y - 11, x + 8, y - 5, al_map_rgb(255, 0, 0));
 			break;
 		case 1://Right
 			al_draw_filled_triangle(32, 27, 32, 37, 64, 32, al_map_rgb(255, 255, 0));
@@ -54,10 +54,10 @@ void arrowClass::create_arrow_bitmap(ALLEGRO_DISPLAY *display)
 			al_draw_filled_rectangle(x + 6, y - 8, x + 11, y - 2, al_map_rgb(255, 0, 0));
 			break;
 		case 2://Down
-			al_draw_filled_triangle(32, 27, 32, 37, 64, 32, al_map_rgb(255, 255, 0));
+			al_draw_filled_triangle(27, 32, 37, 32, 32, 64, al_map_rgb(255, 255, 0));
 			al_draw_filled_circle(x, y, 17, al_map_rgb(0, 0, 255));
-			al_draw_circle(x + 8, y - 5, 5, al_map_rgb(0, 0, 0), 2);
-			al_draw_filled_rectangle(x + 6, y - 8, x + 11, y - 2, al_map_rgb(255, 0, 0));
+			al_draw_circle(x + 5, y+8, 5, al_map_rgb(0, 0, 0), 2);
+			al_draw_filled_rectangle(x + 3, y +11, x + 8, y+5, al_map_rgb(255, 0, 0));
 			break;
 		case 3: //Left
 			al_draw_filled_triangle(32, 27, 32, 37, 0, 32, al_map_rgb(255, 255, 0));
