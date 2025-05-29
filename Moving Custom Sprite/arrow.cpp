@@ -26,7 +26,7 @@ void arrowClass::create_arrow_bitmap(ALLEGRO_DISPLAY *display)
 {
 	for(int i=0;i<4; i++)
 	{
-		arrow_bmp[i]=al_create_bitmap(32,32);   
+		arrow_bmp[i]=al_create_bitmap(64,64);   
 		if(!arrow_bmp[i]) {
 			exit(1);
 			al_destroy_display(display);
@@ -36,23 +36,34 @@ void arrowClass::create_arrow_bitmap(ALLEGRO_DISPLAY *display)
 		al_set_target_bitmap(arrow_bmp[i]);
 		al_clear_to_color(al_map_rgb(0, 0, 0));
 
-		int x = 15;
-		int y = 15;
-		al_draw_filled_rectangle(x-10, y-10, x+10, y+10, al_map_rgb(255, 255, 255));
+		int x = 32;
+		int y = 32;
 
 		switch(i)
 		{
 		case 0: //Up
-			al_draw_filled_triangle(x-10,y-10,x+11,y-10,x,y-15,al_map_rgb(255, 0, 0));
+			al_draw_filled_triangle(32, 27, 32, 37, 64, 32, al_map_rgb(255, 255, 0));
+			al_draw_filled_circle(x, y, 17, al_map_rgb(0, 0, 255));
+			al_draw_circle(x + 8, y - 5, 5, al_map_rgb(0, 0, 0), 2);
+			al_draw_filled_rectangle(x + 6, y - 8, x + 11, y - 2, al_map_rgb(255, 0, 0));
 			break;
 		case 1://Right
-			al_draw_filled_triangle(x+11,y-11,x+11,y+11,x+15,y,al_map_rgb(255, 0, 0));
+			al_draw_filled_triangle(32, 27, 32, 37, 64, 32, al_map_rgb(255, 255, 0));
+			al_draw_filled_circle(x, y, 17, al_map_rgb(0, 0, 255));
+			al_draw_circle(x + 8, y - 5, 5, al_map_rgb(0, 0, 0), 2);
+			al_draw_filled_rectangle(x + 6, y - 8, x + 11, y - 2, al_map_rgb(255, 0, 0));
 			break;
 		case 2://Down
-			al_draw_filled_triangle(x-11,y+11,x+11,y+11,x,y+15,al_map_rgb(255, 0, 0));
+			al_draw_filled_triangle(32, 27, 32, 37, 64, 32, al_map_rgb(255, 255, 0));
+			al_draw_filled_circle(x, y, 17, al_map_rgb(0, 0, 255));
+			al_draw_circle(x + 8, y - 5, 5, al_map_rgb(0, 0, 0), 2);
+			al_draw_filled_rectangle(x + 6, y - 8, x + 11, y - 2, al_map_rgb(255, 0, 0));
 			break;
 		case 3: //Left
-			al_draw_filled_triangle(x-11,y-11,x-11,y+11,x-15,y,al_map_rgb(255, 0, 0));
+			al_draw_filled_triangle(32, 27, 32, 37, 0, 32, al_map_rgb(255, 255, 0));
+			al_draw_filled_circle(x, y, 17, al_map_rgb(0, 0, 255));
+			al_draw_circle(x -8, y - 5, 5, al_map_rgb(0, 0, 0), 2);
+			al_draw_filled_rectangle(x - 6, y - 8, x - 11, y - 2, al_map_rgb(255, 0, 0));
 			break;
 		}
 	}
