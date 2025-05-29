@@ -1,3 +1,6 @@
+//Alexander Young
+//Lab 6
+
 #include "arrow.h"
 arrowClass::arrowClass()
 {
@@ -36,9 +39,11 @@ void arrowClass::create_arrow_bitmap(ALLEGRO_DISPLAY *display)
 		al_set_target_bitmap(arrow_bmp[i]);
 		al_clear_to_color(al_map_rgb(0, 0, 0));
 
+		//changed x and y values to 32 since I am using a 64x64 bitmap
 		int x = 32;
 		int y = 32;
 
+		//Added my own bitmap for each case
 		switch(i)
 		{
 		case 0: //Up
@@ -70,7 +75,7 @@ void arrowClass::create_arrow_bitmap(ALLEGRO_DISPLAY *display)
 }
 void arrowClass::erase_arrow()
 {
-
+	//Changed to add 32 to right and bottom integers since I am using a 64x64 bitmap
 	int left = x ;
 	int top = y;
 	int right = x + 32;
@@ -150,9 +155,9 @@ void arrowClass::move_arrow(int width, int height)
 	}
 
 	//keep arrow inside the screen
-	if (x > width-32)
+	if (x > width-64) //changed to 64 since I am using a 64x64 bitmap
 	{
-		x = width-32;
+		x = width-64; //changed to 64 since I am using a 64x64 bitmap
 		speed = 0;
 	}
 	if (x < 0)
@@ -160,9 +165,9 @@ void arrowClass::move_arrow(int width, int height)
 		x = 0;
 		speed = 0;
 	}
-	if (y > height-72)
+	if (y > height-104) //changed to account for increased display hieght as well as a 64x64 bitmap in use
 	{
-		y = height-72;
+		y = height-104; //changed to account for increased display hieght as well as a 64x64 bitmap in use
 		speed = 0;
 	}
 	if (y < 0)

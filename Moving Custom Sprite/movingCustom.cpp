@@ -1,3 +1,6 @@
+//Alexander Young
+//Lab 6
+
 #include <allegro5\allegro.h>
 #include <allegro5\allegro_primitives.h>
 #include <allegro5/allegro_font.h>
@@ -12,11 +15,10 @@ int main(void)
 	int score=0;
 	bool redraw=true;
 	const int FPS = 60;
-	bool timeout = false;
 
 	//variables
 	int width = 640;
-	int height = 520;
+	int height = 520; //Changed height to allow for text to be displayed at the bottom of display
 	bool done = false;
 
 	//allegro variable
@@ -36,14 +38,14 @@ int main(void)
 	//addon init
 	al_install_keyboard();
 	al_init_primitives_addon();
-	al_init_font_addon();
-	al_init_ttf_addon();
+	al_init_font_addon(); //Added font addon to allow for printing time and score to the display
+	al_init_ttf_addon(); //Added ttf addon to allow for printing time and score to the display
 	arrow.create_arrow_bitmap(display);
 
-	ALLEGRO_FONT* font = al_load_ttf_font("Movistar Text Regular.ttf", 20, 0);
-	ALLEGRO_FONT* finalfont = al_load_ttf_font("Movistar Text Regular.ttf", 30, 0);
+	ALLEGRO_FONT* font = al_load_ttf_font("Movistar Text Regular.ttf", 20, 0); //The font for printing score and time during gameplay
+	ALLEGRO_FONT* finalfont = al_load_ttf_font("Movistar Text Regular.ttf", 30, 0); //The font for printing score and message at end of the game
 
-	al_set_target_bitmap(al_get_backbuffer(display));
+	al_set_target_bitmap(al_get_backbuffer(display)); //Tells the program to go to the back buffer for the bitmaps
 	event_queue = al_create_event_queue();
 	timer = al_create_timer(1.0 / FPS);
 	al_register_event_source(event_queue, al_get_keyboard_event_source());
@@ -61,12 +63,13 @@ int main(void)
 		if(ev.type == ALLEGRO_EVENT_TIMER)
 		{
 			redraw = true;
+			//Print the score and current time remaining to the bottom of the display
 			al_clear_to_color(al_map_rgb(0, 0, 0));
 			al_draw_textf(font, al_map_rgb(255, 0, 0), 120, 500, 0, "Score: %i", score);
 			al_draw_textf(font, al_map_rgb(255, 0, 0), width / 2, 500, 0, "%i", count);
 			if (al_get_timer_count(timer) % 60 == 0) {
 				count--;
-				if (count == -1) {
+				if (count == -1) { //When the timer runs out, clear the screen and show the user their score and let them know the game will close automatically
 					done = true;
 					al_clear_to_color(al_map_rgb(0, 0, 0));
 					al_draw_textf(finalfont, al_map_rgb(255, 0, 0), 320, 240, ALLEGRO_ALIGN_CENTER, "Final Score: %i", score);
@@ -119,7 +122,7 @@ int main(void)
 			for(int i=0;i<10;i++)
 			{
 				mybullet[i].erase_bullet();
-				score+=mybullet[i].move_bullet(arrow.getX(),arrow.getY(),64,64,height);
+				score+=mybullet[i].move_bullet(arrow.getX(),arrow.getY(),64,64,height); //Modified to account for 64x64 bitmap being used
 			}
 		}
 		al_flip_display();
